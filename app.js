@@ -31,21 +31,21 @@ app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 //     })
 // );
 
-const corsOptions = {
-    origin: 'https://userplacestest-402014.firebaseapp.com',
-    optionsSuccessStatus: 200, 
-  };
+// const corsOptions = {
+//     origin: 'https://userplacestest-402014.firebaseapp.com',
+//     optionsSuccessStatus: 200, 
+//   };
   
-  app.use(cors(corsOptions));
+//   app.use(cors(corsOptions));
 
-// app.use((req, res, next) => {
-//     res.setHeader("Access-Control-Allow-Origin", "*");
-//     res.setHeader("Access-Control-Allow-Credentials", "true");
-//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS, PUT");
-//     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "https://userplacestest-402014.firebaseapp.com");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS, PUT");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
-//     next();
-// });
+    next();
+});
 
 app.use('/api/places', placesRoutes); // => /api/places...
 app.use('/api/users', usersRoutes); // => /api/places...
