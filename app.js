@@ -40,17 +40,32 @@ app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://userplacestest-402014.firebaseapp.com");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    res.setHeader("Access-Control-Expose-Headers", "Authorization");
 
-     // Handle preflight OPTIONS request
-     if (req.method === 'OPTIONS') {
+    // Handle preflight OPTIONS request
+    if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
     next();
 });
+
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "https://userplacestest-402014.firebaseapp.com");
+//     res.setHeader("Access-Control-Allow-Credentials", "true");
+//     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS, PUT");
+//     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+
+//      // Handle preflight OPTIONS request
+//      if (req.method === 'OPTIONS') {
+//         return res.status(200).end();
+//     }
+
+//     next();
+// });
 
 app.use('/api/places', placesRoutes); // => /api/places...
 app.use('/api/users', usersRoutes); // => /api/places...
