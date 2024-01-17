@@ -54,7 +54,7 @@ app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 // });
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://userplacestest-402014.firebaseapp.com");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS, PUT");
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, Authorization, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
